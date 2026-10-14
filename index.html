@@ -1,1 +1,525 @@
 
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f9d5e5">
+<title>Joyeux anniversaire, Manmi Chou 🎀</title>
+
+<style>
+:root {
+  --pink: #e66c9d;
+  --deep-pink: #bd477b;
+  --light-pink: #fff0f6;
+  --cream: #fffaf6;
+  --gold: #d7ad67;
+  --text: #67374c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f9dce9;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 226, 239, .78),
+      rgba(255, 244, 249, .89),
+      rgba(255, 215, 233, .76)
+    ),
+    url("manmi-chou.jpg") center / cover no-repeat;
+  transform: scale(1.02);
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--deep-pink);
+  outline-offset: 4px;
+}
+
+.cover {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  position: relative;
+}
+
+.cover-card {
+  width: min(100%, 650px);
+  text-align: center;
+  padding: 34px 20px;
+  background: rgba(255, 250, 253, .84);
+  border: 1px solid rgba(255, 255, 255, .95);
+  border-radius: 28px;
+  box-shadow: 0 15px 50px rgba(160, 66, 109, .18);
+  backdrop-filter: blur(9px);
+  animation: appear 1.2s ease both;
+}
+
+.eyebrow {
+  color: var(--deep-pink);
+  font-size: .82rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  color: var(--deep-pink);
+  font-size: clamp(2.2rem, 9vw, 4.5rem);
+  line-height: 1.12;
+  margin: 18px 0;
+  text-shadow: 2px 3px 0 rgba(255,255,255,.8);
+}
+
+.cover-subtitle {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.cover-photo {
+  width: min(62%, 245px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  margin: 18px auto;
+  display: block;
+  padding: 7px;
+  background: white;
+  border: 2px solid #f4c2d7;
+  border-radius: 48% 48% 18px 18px;
+  box-shadow: 0 8px 25px rgba(173, 68, 115, .2);
+  transform: rotate(-2deg);
+  animation: float 4s ease-in-out infinite;
+}
+
+.gift-button {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ef91b9, #c94f87);
+  color: white;
+  padding: 15px 25px;
+  margin-top: 15px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(188, 68, 121, .25);
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.gift-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(188, 68, 121, .32);
+}
+
+.gift-button:disabled {
+  cursor: default;
+}
+
+.small-note {
+  font-size: .83rem;
+  opacity: .8;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+
+#letter-section {
+  display: none;
+  padding: 25px 14px 60px;
+}
+
+#letter-section.visible {
+  display: block;
+  animation: appear 1s ease both;
+}
+
+.letter-shell {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.music-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto 22px;
+  padding: 14px;
+  max-width: 600px;
+  border: 1px solid #f4c1d6;
+  border-radius: 18px;
+  background: rgba(255, 250, 253, .94);
+}
+
+.music-button {
+  background: #fff;
+  color: var(--deep-pink);
+  border: 1px solid #edb3cd;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.music-label {
+  font-size: .9rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.letter {
+  position: relative;
+  padding: clamp(20px, 5vw, 48px);
+  background: rgba(255, 251, 247, .95);
+  border: 2px solid #f1c4d5;
+  border-radius: 20px;
+  box-shadow: 0 16px 50px rgba(155, 67, 106, .16);
+}
+
+.letter::before {
+  content: "🎀";
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+}
+
+.letter h2 {
+  color: var(--deep-pink);
+  text-align: center;
+  line-height: 1.35;
+  margin: 12px 0 28px;
+  font-size: clamp(1.7rem, 6vw, 2.7rem);
+}
+
+.photo-frame {
+  width: min(70%, 260px);
+  margin: 0 auto 28px;
+  padding: 9px 9px 22px;
+  background: white;
+  border: 1px solid #efc0d3;
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(146, 61, 99, .15);
+  transform: rotate(1.5deg);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.photo-caption {
+  text-align: center;
+  font-size: .9rem;
+  margin: 12px 0 0;
+  color: #a04d75;
+  font-style: italic;
+}
+
+.letter p {
+  font-size: 1.04rem;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+  margin: 0 0 21px;
+}
+
+.signature {
+  color: var(--deep-pink);
+  text-align: center;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-top: 28px;
+}
+
+.decorations {
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 1.5rem;
+  margin: 25px 0 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 25px 15px 38px;
+  color: #854866;
+  line-height: 1.8;
+  font-size: .9rem;
+}
+
+.floating {
+  position: fixed;
+  bottom: -40px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .65;
+  animation: rise linear infinite;
+}
+
+.sparkle {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  color: white;
+  text-shadow: 0 0 8px #e58ab3;
+  animation: twinkle 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes rise {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-115vh) rotate(35deg); }
+}
+
+@keyframes twinkle {
+  from { opacity: .25; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover-card { padding: 27px 15px; }
+  .letter p { font-size: 1rem; line-height: 1.85; }
+  .photo-frame { width: 78%; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="decorations" aria-hidden="true"></div>
+
+<section class="cover" id="cover">
+  <div class="cover-card">
+    <div class="eyebrow">Une surprise rien que pour toi</div>
+
+    <h1>Joyeux anniversaire,<br>Manmi Chouuu 🎂</h1>
+
+    <p class="cover-subtitle">
+      Une petite surprise remplie de douceur,<br>
+      de jolis souvenirs et de beaucoup d’amour. 💗
+    </p>
+
+    <img
+      class="cover-photo"
+      src="manmi-chou.jpg"
+      alt="Une photo de Manmi Chou"
+    >
+
+    <p>Pour une personne qui mérite de belles choses. 🥹🎀</p>
+
+    <button class="gift-button" id="openGift">
+      🎁 Ouvrir mon cadeau 💗
+    </button>
+
+    <p class="small-note">
+      Mets-toi à l’aise, ma Manmi Chou.<br>
+      Cette petite surprise est pour toi. 🫂💕
+    </p>
+  </div>
+</section>
+
+<section id="letter-section">
+  <div class="letter-shell">
+
+    <div class="music-panel">
+      <span class="music-label">
+        🎶 Une musique pour accompagner ta lettre
+      </span>
+
+      <button class="music-button" id="musicToggle">
+        ▶ Écouter la musique
+      </button>
+
+      <audio
+        id="birthdayMusic"
+        src="lover.m4a.m4a"
+        preload="auto"
+        loop
+      ></audio>
+
+      <span class="music-label" id="musicStatus" aria-live="polite">
+        Appuie pour écouter la musique.
+      </span>
+    </div>
+
+    <article class="letter">
+      <div class="decorations" aria-hidden="true">🌸 🎀 💗 🌷</div>
+
+      <h2>Joyeux anniversaire,<br>ma Manmi Chouuu 🥹❤️</h2>
+
+      <figure class="photo-frame">
+        <img
+          src="manmi-chou.jpg"
+          alt="Manmi Chou, à l’honneur aujourd’hui"
+        >
+        <figcaption class="photo-caption">
+          Une belle personne, une jolie rencontre. 💕
+        </figcaption>
+      </figure>
+
+      <p>
+        Manmi Chou, tu es l’une de ces personnes que la vie nous permet de rencontrer presque par hasard, sans qu’on s’y attende, mais qui finissent par devenir de très belles surprises. Et franchement, si le hasard devait encore me jouer un tour, j’espère qu’il me ferait rencontrer davantage de personnes comme toi🥹❤️
+      </p>
+
+      <p>
+        Tu es une fille que j’apprécie énormément, et je ne le dis pas juste pour faire joli. J’admire sincèrement ta force, ta détermination et ton courage. J’admire cette capacité que tu as à avancer, à rester déterminée et à poursuivre ton chemin. Tu es une personne qui mérite qu’on reconnaisse ses qualités, qu’on célèbre ses efforts et qu’on lui rappelle à quel point elle est précieuse ❤️‍🩹🫶🏽
+      </p>
+
+      <p>
+        Mais alors, parlons de cette petite voix 😭😭😂❤️ Cette voix tellement mignonne et fondante qui fait fondre mon cœur sans même demander la permission 😂🥹💕 Franchement, toi aussi, tu sais que tu as un petit quelque chose qui te rend particulièrement attachante
+      </p>
+
+      <p>
+        En ce jour spécial, je te souhaite un anniversaire aussi beau que les belles choses que tu mérites. Que cette nouvelle année de ta vie t'apporte la paix du cœur, une santé solide, de la joie, des réussites et la force de réaliser tes rêves, même ceux que tu n’oses pas encore partager avec le monde. Que Dieu veille sur toi, guide tes pas et mette sur ton chemin des personnes aussi sincères que tu le mérites🙏🏽❤️
+      </p>
+
+      <p>
+        Merci d’être cette belle personne que j’ai eu la chance de rencontrer. Je suis vraiment heureuse que ce hasard nous ait permis de nous connaître, parce que certaines rencontres nous rappellent que les plus belles surprises arrivent parfois sans prévenir 🥹💗
+      </p>
+
+      <p>
+        Joyeux anniversaire, ma Manmi Chou 🎂🎉❤️ Continue de briller, de te battre pour tes rêves et de garder cette belle force qui te caractérise. Et surtout, ne change pas cette petite voix, hein 😂😭💕 Elle a déjà beaucoup trop de pouvoir sur les cœurs !
+      </p>
+
+      <p>
+        Je te souhaite tout le bonheur du monde, aujourd’hui et pour toutes les belles années à venir. Je t’envoie plein d’amour et de gros bisous 😘🫂❤️🎀
+      </p>
+
+      <div class="signature">
+        Avec beaucoup d’amour 💗<br>
+        Joyeux anniversaire ! 🎂
+      </div>
+
+      <div class="decorations" aria-hidden="true">
+        🧸 🌸 🎀 💌 🎀 🌸 🧸
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer class="footer">
+  Fait avec amour, des paillettes et beaucoup de tendresse. 🎀<br>
+  Pour Manmi Chou, aujourd’hui et toujours. 💗
+</footer>
+
+<script>
+const openGift = document.getElementById("openGift");
+const letterSection = document.getElementById("letter-section");
+const music = document.getElementById("birthdayMusic");
+const musicToggle = document.getElementById("musicToggle");
+const musicStatus = document.getElementById("musicStatus");
+
+openGift.addEventListener("click", async () => {
+  letterSection.classList.add("visible");
+  openGift.textContent = "💗 Ton cadeau est ouvert !";
+  openGift.disabled = true;
+
+  letterSection.scrollIntoView({ behavior: "smooth" });
+
+  try {
+    await music.play();
+    musicToggle.textContent = "⏸ Mettre en pause";
+    musicStatus.textContent = "La musique est en cours de lecture. 🎶";
+  } catch (error) {
+    musicStatus.textContent =
+      "Appuie sur « Écouter la musique » pour démarrer. 🎶";
+  }
+});
+
+musicToggle.addEventListener("click", async () => {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicToggle.textContent = "⏸ Mettre en pause";
+      musicStatus.textContent = "La musique est en cours de lecture. 🎶";
+    } catch (error) {
+      musicStatus.textContent =
+        "Lecture impossible. Vérifie le fichier musical dans le dépôt.";
+    }
+  } else {
+    music.pause();
+    musicToggle.textContent = "▶ Reprendre la musique";
+    musicStatus.textContent = "Musique en pause.";
+  }
+});
+
+music.addEventListener("error", () => {
+  musicStatus.textContent =
+    "La musique est introuvable. Nous vérifierons son nom dans GitHub.";
+});
+
+const decorations = document.getElementById("decorations");
+const floatingSymbols = ["💗", "💕", "🎀", "🌸", "✨", "🩷"];
+
+for (let i = 0; i < 18; i++) {
+  const item = document.createElement("span");
+  item.className = "floating";
+  item.textContent =
+    floatingSymbols[Math.floor(Math.random() * floatingSymbols.length)];
+
+  item.style.left = Math.random() * 100 + "%";
+  item.style.animationDuration = (9 + Math.random() * 13) + "s";
+  item.style.animationDelay = (-Math.random() * 20) + "s";
+  item.style.fontSize = (14 + Math.random() * 19) + "px";
+
+  decorations.appendChild(item);
+}
+
+for (let i = 0; i < 14; i++) {
+  const star = document.createElement("span");
+  star.className = "sparkle";
+  star.textContent = "✦";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  star.style.fontSize = (9 + Math.random() * 13) + "px";
+
+  decorations.appendChild(star);
+}
+</script>
+
+</body>
+</html>
